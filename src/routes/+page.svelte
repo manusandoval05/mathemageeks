@@ -1,5 +1,6 @@
 <script lang="ts">
   import { invoke } from "@tauri-apps/api/core";
+  import { level } from "$lib/store";
   import katex from 'katex';
   import { tick } from 'svelte';
   import renderMathInElement from "https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.mjs";
@@ -101,11 +102,23 @@
     <input id="greet-input" onkeypress={refreshExpression} placeholder="Escribe una expresión lógica o matemática..." bind:value={expression} />
     <button type="submit">M</button>
   </form>
+  <div>
+    <ol class="flex items-center gap-4">
+    <li><a class="opacity-60 hover:underline" href="#">Blog</a></li>
+    <li class="opacity-50" aria-hidden>&rsaquo;</li>
+    <li><a class="opacity-60 hover:underline" href="#">Category</a></li>
+    <li class="opacity-50" aria-hidden>&rsaquo;</li>
+    <li>Article</li>
+  </ol>
+  </div>
   {#each expressionList as customExpression}
     <div>
       <h1>{customExpression.name}</h1>
       <div>
         {customExpression.expression}
+      </div>
+      <div>
+        <button>Demostración</button>
       </div>
       <h2>Encontrado en</h2>
       <ul>
